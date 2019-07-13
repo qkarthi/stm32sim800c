@@ -8,4 +8,4 @@
 ## Physical Details:
 - Board version : V3.2
 - Board manufactured by : diy mall unv
-- Board manufactured date : -  11-10-2018
+- Board manufactured date : 11-10-2018
