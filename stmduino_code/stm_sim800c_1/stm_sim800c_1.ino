@@ -1,10 +1,9 @@
 #include "aConfig.h"
 #include "hwPins.h"
-#include "led.h"
 #include "serial.h"
 #include "storage.h"
 #include "gsm.h"
-
+#include "led.h"
 /////////////////////////////////////////////////////////
 void setup() {
   initSerial();
@@ -13,6 +12,8 @@ void setup() {
   pwrGsmModule();
   loadcon();
   con_default();
+  debugEchos1(storage.dev_0_mob);
+  debugEchos1(storage.master_0_mob);
 }
 
 void loop() {
@@ -36,13 +37,16 @@ void loop() {
       //init gsm for sms and call
       initGsm();
       gsmCarrierIdent();
-      gsmMsgSend("9524770257", "hello");
+      acKMsgInit();
       opernStgVar += 1;
+      break;
+    case 4:
+      gsmSerialFunc();
+      serialDebugTx();
       break;
     default:
       //debug at last
       serialDebug();
-      //gsmSerialFunc();
       break;
   }
 

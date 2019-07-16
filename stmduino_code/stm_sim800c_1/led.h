@@ -1,9 +1,9 @@
 unsigned long stbyLedMillis = 0;
-bool stledStatus = false ;
+bool stbyLedStatus = false ;
 void StbyLedMillisFunc() {
-  if (millis() - stbyLedMillis > 50) {
-    stledStatus=!stledStatus;
-    pinMode(LED1,stledStatus);
+  if (millis() - stbyLedMillis > 300) {
+    stbyLedStatus=!stbyLedStatus;
+    digitalWrite(LED1,stbyLedStatus);
     stbyLedMillis = millis();
   }
 }

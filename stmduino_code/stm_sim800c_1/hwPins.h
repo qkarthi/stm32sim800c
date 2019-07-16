@@ -4,6 +4,9 @@
 #define REL2    PA1
 #define GSM_PWR PA5
 
+bool REL1_status = false ;
+bool REL2_status = false ;
+
 void initHwPins(){
   pinMode(LED1,OUTPUT);
   pinMode(LED2,OUTPUT);
@@ -11,6 +14,6 @@ void initHwPins(){
   pinMode(REL2,OUTPUT);
   pinMode(GSM_PWR,OUTPUT);
 
-  pinMode(LED1,LOW);
-  pinMode(LED2,LOW);
+  digitalWrite(LED1,LOW);
+  digitalWrite(LED2,HIGH);
 }

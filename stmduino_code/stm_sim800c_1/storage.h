@@ -1,6 +1,6 @@
 #include <EEPROM.h>
 #define CONFIG_START 10
-#define CONFIG_VERSION "003"
+#define CONFIG_VERSION "004"
 
 bool eeprom_write_flag = false;
 
@@ -9,46 +9,14 @@ struct StoreStruct {
   ////////////////////////////////////////////////////
   char  dev_0_mob[16];
   char  master_0_mob[16];
-  char  master_1_mob[16];
-  char  slave_1_mob[16];
-  char  slave_2_mob[16];
-  char  slave_3_mob[16];
-  char  slave_4_mob[16];
-  char  slave_5_mob[16];
   ////////////////////////////////////////////////////
-  uint8_t dev_0_sms: 1;
-  uint8_t master_0_sms: 1;
-  uint8_t master_1_sms: 1;
-  uint8_t slave_1_sms: 1;
-  uint8_t slave_2_sms: 1;
-  uint8_t slave_3_sms: 1;
-  uint8_t slave_4_sms: 1;
-  uint8_t slave_5_sms: 1;
-  ////////////////////////////////////////////////////
-  uint8_t dev_0_call: 1;
-  uint8_t master_0_call: 1;
-  uint8_t master_1_call: 1;
-  uint8_t slave_1_call: 1;
-  uint8_t slave_2_call: 1;
-  uint8_t slave_3_call: 1;
-  uint8_t slave_4_call: 1;
-  uint8_t slave_5_call: 1;
-  ////////////////////////////////////////////////////
-  uint8_t security_on_off: 1;
-  uint8_t power_down_alert: 1;
-  uint8_t power_up_alert: 1;
-  ////////////////////////////////////////////////////
-
   ////////////////////////////////////////////////////
   uint8_t configflag: 1;
 } ;
 StoreStruct storage ;
 StoreStruct storage_default = {
   CONFIG_VERSION,
-  "9524770257", "9524770257", "9524770257", "9524770257", "9524770257", "9524770257", "9524770257", "9524770257",
-  0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0,
-  1, 0, 0,
+  "9524770257", "9524770257",
   0,
 };
 

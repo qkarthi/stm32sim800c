@@ -2,27 +2,10 @@ int opernStgVar = 1;
 String carrierStr = "", mobileNumberStr = "";
 unsigned long nowSec = 0;
 bool gsmSerialUpd ;
-
-bool msgRecvdBool = false, msgValidatorBool;
+bool msgRecvd =false;
+bool msgRecvdBool = false, msgValidatorBool,callHangerBool = false;
 String timeStampStr, msgStr, msgDateStr, msgTimeStr;
 char charBufferArray[16];
-//////////////////////////////////////////////
-void debugEchos1(String echo) {
-  Serial1.println(echo);
-}
-
-void gsmCommand(String echo) {
-  debugEchos1(" ### - " + echo);
-  Serial2.println(echo);
-  serStr = Serial2.readString();
-  debugEchos1(serStr);
-  delay(500);
-}
-void gsmCommandPrint(String echo) {
-  Serial2.print(echo);
-}
-
-//------------------------------------------//
 //////////////////////////////////////////////
 void pwrGsmModule() {
   debugEchos1("gsm power low");
@@ -66,9 +49,18 @@ void gsmMsgSend(String mobile_number, String msg) {
   gsmCommandPrint("\"");
   gsmCommandPrint(mobile_number);
   gsmCommand("\"");
-  delay(1000);
+  delay(500);
   gsmCommandPrint(msg);// The SMS text you want to send
-  delay(1000);
+  delay(500);
   Serial2.write(0x1A); // ASCII code of CTRL+Z
   delay(1000);
+}
+void acKMsgInit(){
+  String msg = "";
+  
+  msg+="GSM POWERED ON";
+  msg+="\r\n FW ver. : "+String(CONFIG_VERSION);
+  msg+="\r\n Network : "+carrierStr;
+  
+  gsmMsgSend(String(storage.master_0_mob), msg);
 }

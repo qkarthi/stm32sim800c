@@ -14,3 +14,27 @@ void serialDebug() {
     Serial2.print( Serial1.readString());
   }
 }
+void serialDebugTx() {
+  if (Serial1.available()) {
+    Serial2.print( Serial1.readString());
+  }
+}
+
+
+//////////////////////////////////////////////
+void debugEchos1(String echo) {
+  Serial1.println(echo);
+}
+
+void gsmCommand(String echo) {
+  debugEchos1(" ### - " + echo);
+  Serial2.println(echo);
+  serStr = Serial2.readString();
+  debugEchos1(serStr);
+  delay(500);
+}
+void gsmCommandPrint(String echo) {
+  Serial2.print(echo);
+}
+
+//------------------------------------------//
