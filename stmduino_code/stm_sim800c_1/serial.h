@@ -23,6 +23,7 @@ void serialDebugTx() {
 
 //////////////////////////////////////////////
 void debugEchos1(String echo) {
+  Serial.println(echo);
   Serial1.println(echo);
 }
 
