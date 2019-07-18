@@ -55,7 +55,7 @@ void gsmMsgSend(String mobile_number, String msg) {
   Serial2.write(0x1A); // ASCII code of CTRL+Z
   delay(1000);
 }
-void acKMsgInit(){
+void ackMsgInit(){
   String msg = "";
   
   msg+="GSM POWERED ON";
