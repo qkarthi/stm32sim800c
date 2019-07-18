@@ -5,7 +5,7 @@ void gsmSerialFunc() {
   } else if (gsmSerialUpd) {
     /////////////////////////////////////////////////////////////////////////
     debugEchos1("DEBUG :" + serStr); //////////////////
-    callAnalyser(serStr);
+    //callAnalyser(serStr);
     msgAnalyser(serStr);
     msgReader(serStr);
     msgConfigValidator(serStr);
