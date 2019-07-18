@@ -37,7 +37,7 @@ void loop() {
       //init gsm for sms and call
       initGsm();
       gsmCarrierIdent();
-      ackMsgInit();
+      //ackMsgInit();
       opernStgVar += 1;
       break;
     case 4:

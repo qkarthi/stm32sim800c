@@ -1,4 +1,4 @@
-#define LED1    PB15
+#define LED1    PC13
 #define LED2    PB14
 #define REL1    PA0
 #define REL2    PA1
