@@ -14,6 +14,20 @@ NO CARRIER
 +CMGR: "REC UNREAD","+919524770257","","19/07/14,12:52:01+22"
 Hello
 
+IMEI : AT+CGSN
+
 
 AT+VTD=10
 AT+VTS="1,A,2,B,3,C,4,D"
+
+
+AT+DDET=1
+
+
+AT+CLDTMF=100,"5",150
+
+
+at+cnetscan
+
+
+AT+CGMR   - VERSION
