@@ -24,8 +24,15 @@ AT+VTS="1,A,2,B,3,C,4,D"
 AT+DDET=1
 
 
-AT+CLDTMF=100,"5",150
+AT+CLDTMF=100,"A",10
 
+AT+CLDTMF=100,"1,A,2,B,3,C,4,D",15
+
+AT+CLDTMF=100,"1,A,2,B,1,A",15
+
+AT+CLDTMF=10,"1,A,2,B,3,C,4,A",10
+
+AT+CLDTMF=20,"A,A,A",30
 
 at+cnetscan
 
