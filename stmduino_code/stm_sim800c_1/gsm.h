@@ -30,6 +30,7 @@ void initGsm() {
   debugEchos1("init gsm");
   gsmCommand("AT+CMGF=1");
   gsmCommand("AT+CLIP=1");
+  gsmCommand("AT+DDET=1");
 }
 //////////////////////////////////////////////
 void gsmCarrierIdent() {

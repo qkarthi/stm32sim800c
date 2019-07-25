@@ -5,11 +5,12 @@ void gsmSerialFunc() {
   } else if (gsmSerialUpd) {
     /////////////////////////////////////////////////////////////////////////
     debugEchos1("DEBUG :" + serStr); //////////////////
-   // callAnalyser(serStr);
+    callAnalyser(serStr);
     msgAnalyser(serStr);
     msgReader(serStr);
     msgConfigValidator(serStr);
     msgController(serStr);
+    dtmfAnalyser(serStr);
     /////////////////////////////////////////////////////////////////////////
     gsmSerialUpd = false;
   }
@@ -19,20 +20,44 @@ void callAnalyser(String buff) {
   if (buff.indexOf("+CLIP:") > -1) {
     mobileNumberStr =  (buff.substring(buff.indexOf("91") + 2, buff.indexOf("91") + 12));
     debugEchos1( "CALL:" + mobileNumberStr);
-    if(mobileNumberStr==storage.master_0_mob){
-      REL1_status = !REL1_status;
-      digitalWrite(REL1,REL1_status);
-    }
     callHangerBool = true;
   }
   if (buff.indexOf("RING") > -1) {
     debugEchos1( "CALL DETECT" );
     if (callHangerBool) {
-      delay(3000);
-      gsmCommand("ATH");
-      debugEchos1( "CALL DISCONNECTED" );
+      if (!(mobileNumberStr == storage.master_0_mob)) {
+        delay(3000);
+        gsmCommand("ATH");
+        debugEchos1( "CALL DISCONNECTED" );
+      } else {
+        gsmCommand("ATA");
+        debugEchos1( "MASTER CALL ANSWERED" );
+      }
       callHangerBool = false;
-      //StatusAck = true ;
+    }
+  }
+
+}
+
+void dtmfAnalyser(String buff) {
+  if (buff.indexOf("+DTMF:") > -1) {
+    debugEchos1( "CALL DTMF DETECTED" );
+    String dtmf = (buff.substring(buff.indexOf("+") + 7, buff.indexOf("+") + 8));
+    debugEchos1( "DTMF:" + dtmf);
+    if (dtmf == "1") {
+      gsmCommand("AT+CLDTMF=10,\"5,1,0,5,1,0,5,1,0\",50");
+      delay(10000);
+      gsmCommand("ATH");
+      delay(1000);
+      gsmMsgSend(storage.master_0_mob, "TURNED ON");
+    }    
+    
+    if (dtmf == "2") {
+      gsmCommand("AT+CLDTMF=100,\"1\",200");
+      delay(5000);
+      gsmCommand("ATH");
+      delay(1000);
+      gsmMsgSend(storage.master_0_mob, "TURNED OFF - DOWN");
     }
   }
 }
